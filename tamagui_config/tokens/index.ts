@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import {createTokens} from 'tamagui';
-import {paletteColor} from './color';
+import {color} from './color';
 
 export const size = {
   $0: 0,
@@ -106,6 +106,6 @@ export const tokens = createTokens({
   size,
   space,
   zIndex,
-  color: paletteColor,
+  color,
   radius,
 });

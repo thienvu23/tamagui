@@ -1,8 +1,7 @@
 import {createFont, createTamagui} from 'tamagui'; // or '@tamagui/core'
 import {shorthands} from '@tamagui/shorthands';
-import {tokens} from './tamagui_config';
-import {themes} from '@tamagui/themes';
-import {TextStyle} from 'react-native';
+import {tokens, themes} from './tamagui_config';
+// import {themes} from '@tamagui/themes';
 
 export const getFontFamilies = (name = 'Montserrat') => ({
   thin: {
@@ -90,12 +89,6 @@ const font = createFont({
     700: defaultFontFamily.bold,
     800: defaultFontFamily.extraBold,
     900: defaultFontFamily.extraBlack,
-  },
-  style: {
-    a: {
-      fonSize: 20,
-      backgroundColor: 'pink',
-    } as unknown as TextStyle['fontStyle'],
   },
 });
 

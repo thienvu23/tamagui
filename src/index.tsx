@@ -12,25 +12,61 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from './Home';
-import {View, H3} from 'tamagui';
+import CommonScreen from './Common';
+import {XStack, Switch, Theme, Label} from 'tamagui';
+import {useNavigation} from '@react-navigation/native';
+import {Appbar} from './components/Appbar';
 
-const Stack = createNativeStackNavigator();
+const StackNav = createNativeStackNavigator();
 
-const Root = () => {
+const Root = ({
+  isDark = false,
+  setEnableDarkMode,
+}: {
+  isDark: boolean;
+  setEnableDarkMode: (isDark: boolean) => void;
+}) => {
+  const navigation = useNavigation();
+
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerBackground: () => (
-          <View f={1} bg={'$background'} jc={'center'} ai={'center'} />
-        ),
-        headerTitle: ({children}) => (
-          <H3 fontSize="$8" color="$color" fontWeight={'$7'}>
-            {children}
-          </H3>
-        ),
-      }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
+    <Theme name={'primary'}>
+      <StackNav.Navigator
+        screenOptions={{
+          header: props => {
+            return (
+              <Appbar>
+                <Appbar.Content>{props.route.name}</Appbar.Content>
+              </Appbar>
+            );
+          },
+        }}>
+        <StackNav.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerRight: () => (
+              <XStack space={'$2'} spaceDirection="horizontal" ai={'center'}>
+                <Label fow={'$6'} paddingRight="$0" justifyContent="flex-end">
+                  Dark
+                </Label>
+                <Theme name={'secondary'} inverse>
+                  <Switch
+                    onCheckedChange={setEnableDarkMode}
+                    checked={isDark}
+                    size="$2">
+                    <Switch.Thumb
+                      backgroundColor={'$color'}
+                      animation="quick"
+                    />
+                  </Switch>
+                </Theme>
+              </XStack>
+            ),
+          }}
+        />
+        <StackNav.Screen name="Common" component={CommonScreen} />
+      </StackNav.Navigator>
+    </Theme>
   );
 };
 

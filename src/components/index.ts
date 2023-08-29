@@ -18,8 +18,4 @@ export const ScrollView = styled(RNScrollView, {
   },
 });
 
-export const Button = styled(TaButton, {
-  theme: 'red_Button',
-  // themeInverse: true,
-  // pressTheme: false,
-});
+export const Button = styled(TaButton, {});

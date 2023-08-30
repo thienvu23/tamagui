@@ -13,18 +13,19 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from './Home';
 import CommonScreen from './Common';
-import {XStack, Switch, Theme, Label} from 'tamagui';
+import {Theme} from 'tamagui';
 import {useNavigation} from '@react-navigation/native';
-import {Appbar} from './components/Appbar';
+import Appbar from '../components/Appbar';
+import Icons from '../components/Icons';
 
 const StackNav = createNativeStackNavigator();
 
 const Root = ({
   isDark = false,
-  setEnableDarkMode,
+  switchDarkMode,
 }: {
   isDark: boolean;
-  setEnableDarkMode: (isDark: boolean) => void;
+  switchDarkMode: () => void;
 }) => {
   const navigation = useNavigation();
 
@@ -34,36 +35,27 @@ const Root = ({
         screenOptions={{
           header: props => {
             return (
-              <Appbar>
+              <Appbar contentShouldCenter>
+                {props.back && (
+                  <Appbar.BackAction onPress={navigation.goBack} />
+                )}
                 <Appbar.Content>{props.route.name}</Appbar.Content>
+                <Appbar.Action
+                  fontWeight={'$6'}
+                  scaleIcon={1.2}
+                  icon={
+                    <Icons
+                      name={isDark ? 'LightbulbOff' : 'Lightbulb'}
+                      size="$1"
+                    />
+                  }
+                  onPress={switchDarkMode}
+                />
               </Appbar>
             );
           },
         }}>
-        <StackNav.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            headerRight: () => (
-              <XStack space={'$2'} spaceDirection="horizontal" ai={'center'}>
-                <Label fow={'$6'} paddingRight="$0" justifyContent="flex-end">
-                  Dark
-                </Label>
-                <Theme name={'secondary'} inverse>
-                  <Switch
-                    onCheckedChange={setEnableDarkMode}
-                    checked={isDark}
-                    size="$2">
-                    <Switch.Thumb
-                      backgroundColor={'$color'}
-                      animation="quick"
-                    />
-                  </Switch>
-                </Theme>
-              </XStack>
-            ),
-          }}
-        />
+        <StackNav.Screen name="Home" component={HomeScreen} />
         <StackNav.Screen name="Common" component={CommonScreen} />
       </StackNav.Navigator>
     </Theme>

@@ -10,7 +10,7 @@
 // import 'react-native-gesture-handler';
 import React, {Suspense, useState} from 'react';
 
-import RootNavigation from './src';
+import RootNavigation from './src/screens';
 import {TamaguiProvider, Theme} from 'tamagui';
 import tamaguiConfig from './tamagui.config';
 import {NavigationContainer} from '@react-navigation/native';
@@ -27,7 +27,9 @@ const App = () => {
           <StatusBar barStyle={'light-content'} />
           <RootNavigation
             isDark={theme === 'dark'}
-            setEnableDarkMode={isDark => setTheme(isDark ? 'dark' : 'light')}
+            switchDarkMode={() =>
+              setTheme(pre => (pre === 'light' ? 'dark' : 'light'))
+            }
           />
         </Suspense>
       </NavigationContainer>

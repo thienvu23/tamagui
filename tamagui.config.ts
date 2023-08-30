@@ -1,6 +1,7 @@
 import {createFont, createTamagui} from 'tamagui'; // or '@tamagui/core'
 import {shorthands} from '@tamagui/shorthands';
 import {tokens, themes} from './tamagui_config';
+import {ms} from 'react-native-size-matters';
 // import {themes} from '@tamagui/themes';
 
 export const getFontFamilies = (name = 'Montserrat') => ({
@@ -51,17 +52,17 @@ const font = createFont({
   // will fill-in any missing values if `lineHeight`, `weight` or `letterSpacing`
   // are subsets of `size`
   size: {
-    1: 5,
-    2: 7,
-    3: 9,
-    4: 10,
-    5: 12,
-    6: 14,
-    7: 15,
-    8: 18,
-    9: 22,
-    10: 30,
-    11: 48,
+    1: ms(5),
+    2: ms(7),
+    3: ms(9),
+    4: ms(10),
+    5: ms(12),
+    6: ms(14),
+    7: ms(15),
+    8: ms(18),
+    9: ms(22),
+    10: ms(30),
+    11: ms(48),
   },
   lineHeight: {},
   weight: {

@@ -1,9 +1,0 @@
-{
-    "appId": "application-0-wpvtw",
-    "appUrl": "https://realm.mongodb.com/groups/6209d2cc35e8f92153a17e32/apps/64f01807eb5ab5f606facddc",
-    "baseUrl": "https://realm.mongodb.com",
-    "clientApiBaseUrl": "https://ap-southeast-1.aws.realm.mongodb.com",
-    "dataApiBaseUrl": "https://ap-southeast-1.aws.data.mongodb-api.com",
-    "dataExplorerLink": "https://cloud.mongodb.com/links/6209d2cc35e8f92153a17e32/explorer/Cluster0/database/collection/find",
-    "dataSourceName": "mongodb-atlas"
-}
